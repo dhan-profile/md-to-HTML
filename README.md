@@ -1,5 +1,7 @@
 # Markdown to HTML Converter
 
+![mdtohtml-lightmode](/images/image.png)
+
 This project is a simple web-based Markdown to HTML converter. It allows users to paste Markdown text into a textbox and convert it into HTML. The converted output is displayed in two separate tabs: one for rendered HTML and another for the HTML code with an option to copy the code to the clipboard. Additionally, the site supports a dark/light mode toggle using a modern, stylish toggle switch.
 
 ## Features
@@ -41,6 +43,8 @@ To use this converter:
 
 - **Theme Colors:**  
   Change the light and dark mode colors by updating the relevant CSS classes (`.light-mode` and `.dark-mode`).
+
+![mdtohtml-lightmode](/images/mdtohtml-darkmode.JPG)
 
 - **Marked.js Options:**  
   You can customize the behavior of the Marked.js converter by reviewing its documentation and adding configuration options in the JavaScript where the conversion takes place.
