@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown to HTML Converter</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+      background-color: #fafafa;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    textarea {
+      width: 100%;
+      height: 150px;
+      padding: 10px;
+      font-family: monospace;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      resize: vertical;
+    }
+    .output {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background: #f4f4f4;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      margin-right: 10px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    #convertBtn {
+      background-color: #28a745;
+      color: #fff;
+    }
+    #copyBtn {
+      background-color: #007bff;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Markdown to HTML Converter</h1>
+    <p>Paste your Markdown text below and click the "Convert" button. The HTML output will appear below along with a button to copy the converted HTML.</p>
+    <textarea id="markdownInput" placeholder="Paste Markdown text here..."></textarea>
+    <div style="margin-top: 10px;">
+      <button id="convertBtn">Convert</button>
+      <button id="copyBtn">Copy HTML</button>
+    </div>
+    
+    <h2>Converted HTML:</h2>
+    <div id="htmlOutput" class="output"></div>
+  </div>
+  
+  <!-- Include the Marked.js library from CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // Convert Markdown to HTML when "Convert" button is clicked
+    document.getElementById('convertBtn').addEventListener('click', function() {
+      var markdownText = document.getElementById('markdownInput').value;
+      var html = marked.parse(markdownText);
+      document.getElementById('htmlOutput').textContent = html;
+    });
+    
+    // Copy the converted HTML to clipboard when "Copy HTML" button is clicked
+    document.getElementById('copyBtn').addEventListener('click', function() {
+      // Create a temporary textarea element to hold the text
+      var tempTextArea = document.createElement('textarea');
+      tempTextArea.value = document.getElementById('htmlOutput').textContent;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      
+      try {
+        var successful = document.execCommand('copy');
+        if (successful) {
+          alert('HTML copied to clipboard!');
+        } else {
+          alert('Failed to copy text.');
+        }
+      } catch (err) {
+        alert('Error copying text: ' + err);
+      }
+      
+      // Remove the temporary textarea
+      document.body.removeChild(tempTextArea);
+    });
+  </script>
+</body>
+</html>
